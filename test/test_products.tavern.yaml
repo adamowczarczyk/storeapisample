@@ -3,7 +3,7 @@ test_name: Verify url validity
 stages:
   - name: Check that products list is valid
     request:
-      url: http://localhost:8000/products
+      url: http://localhost:8000/products/
       method: GET
       headers:
         content-type: application/json
@@ -18,7 +18,7 @@ test_name: Check invalid inputs are handled
 stages:
   - name: Raise an error on retired version
     request:
-      url: http://localhost:8000/products
+      url: http://localhost:8000/products/
       method: GET
       headers:
         content-type: application/json

@@ -3,11 +3,11 @@ test_name: Verify url validity
 stages:
   - name: Check that orders list is valid
     request:
-      url: http://localhost:8000/orders
+      url: http://localhost:8000/orders/
       method: GET
       headers:
         content-type: application/json
-        accepts-version: 1.0
+        accepts-version: '1.0'
     response:
       status_code: 200
 
@@ -18,14 +18,14 @@ test_name: Check invalid inputs are handled
 stages:
   - name: Trivial case of incorrect type
     request:
-      url: http://localhost:8000/orders
+      url: http://localhost:8000/orders/
       json:
         order:
           id: abcdef
       method: PUT
       headers:
         content-type: application/json
-        accepts-version: 1.0
+        accepts-version: '1.0'
     response:
       status_code: 400
       json:
@@ -33,11 +33,11 @@ stages:
 
   - name: Raise an error on retired api version
     request:
-      url: http://localhost:8000/orders
+      url: http://localhost:8000/orders/
       method: GET
       headers:
         content-type: application/json
-        accepts-version: 0.04b
+        accepts-version: '0.04b'
     response:
       status_code: 400
       json:
@@ -45,14 +45,14 @@ stages:
 
   - name: Trying to delete item that doesn't exist
     request:
-      url: http://localhost:8000/orders
+      url: http://localhost:8000/orders/
       json:
         order:
           id: -42
       method: DELETE
       headers:
         content-type: application/json
-        accepts-version: 1.0
+        accepts-version: '1.0'
     response:
       status_code: 400
       json:
